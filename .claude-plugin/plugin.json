@@ -1,0 +1,9 @@
+{
+  "name": "android-test-harness",
+  "description": "ADB 연결 안드로이드 디바이스를 자동 탐색하고 테스트 케이스를 생성·실행하는 하네스",
+  "version": "0.1.0",
+  "author": {
+    "name": ""
+  },
+  "license": "MIT"
+}

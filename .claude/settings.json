@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls)",
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(stat *)",
+      "Bash(mkdir -p *)",
+      "Bash(cat *)",
+      "Bash(rm -rf .android-test-artifacts/*)",
+      "Bash(adb devices*)",
+      "Bash(adb shell *)",
+      "Bash(adb install *)",
+      "Bash(adb uninstall *)",
+      "Bash(adb pull *)",
+      "Bash(adb push *)",
+      "Bash(adb forward *)",
+      "Bash(adb logcat *)",
+      "Bash(adb kill-server)",
+      "Bash(adb start-server)",
+      "Bash(appium*)",
+      "Bash(python -m uiautomator2 *)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(pytest *)",
+      "Bash(uv run *)",
+      "Bash(gradle *)",
+      "Bash(./gradlew *)",
+      "Bash(textual run *)",
+      "Bash(uvicorn *)",
+      "Bash(nohup *)",
+      "Bash(kill *)",
+      "Bash(pkill *)",
+      "Bash(lsof *)",
+      "Bash(which *)",
+      "Bash(env)",
+      "Bash(echo *)"
+    ]
+  }
+}
