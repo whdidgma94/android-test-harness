@@ -1,3 +1,6 @@
 .harness-artifacts/
 .argos/
 *.local.json
+.android-test-artifacts/
+gui/__pycache__/
+**/__pycache__/

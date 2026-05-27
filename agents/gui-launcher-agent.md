@@ -42,9 +42,10 @@ tools: Read, Bash
 ### gui-mode = web
 
 1. `Bash(mkdir -p {gui_dir})` 로 디렉토리를 사전 생성한다.
-2. 다음 명령으로 FastAPI 대시보드를 백그라운드 실행한다:
+2. 다음 명령으로 FastAPI 대시보드를 백그라운드 실행한다 (`ANDROID_TEST_SESSION_DIR` 환경변수로 세션 경로를 전달하고, 하네스 루트에서 실행해야 `gui` 패키지를 import 할 수 있다):
    ```bash
-   nohup uvicorn gui.dashboard:app --port 8765 > {log_file} 2>&1 &
+   SESSION_ABS=$(realpath ".android-test-artifacts/{session-id}")
+   nohup env ANDROID_TEST_SESSION_DIR="${SESSION_ABS}" uvicorn gui.dashboard:app --port 8765 > {log_file} 2>&1 &
    echo $!
    ```
 3. 위 명령 출력(PID)을 캡처하여 `{pid_file}` 에 Write한다.
@@ -55,9 +56,10 @@ tools: Read, Bash
 ### gui-mode = tui
 
 1. `Bash(mkdir -p {gui_dir})` 로 디렉토리를 사전 생성한다.
-2. 다음 명령으로 Textual TUI를 백그라운드 실행한다:
+2. 다음 명령으로 Textual TUI를 백그라운드 실행한다 (세션 경로를 CLI 인자로 전달한다):
    ```bash
-   nohup textual run gui/tui_app.py > {log_file} 2>&1 &
+   SESSION_ABS=$(realpath ".android-test-artifacts/{session-id}")
+   nohup python gui/tui_app.py "${SESSION_ABS}" > {log_file} 2>&1 &
    echo $!
    ```
 3. 위 명령 출력(PID)을 캡처하여 `{pid_file}` 에 Write한다.
