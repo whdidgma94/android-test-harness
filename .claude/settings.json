@@ -37,6 +37,10 @@
       "Bash(which *)",
       "Bash(env)",
       "Bash(echo *)"
+    ],
+    "deny": [
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~*)"
     ]
   }
 }
