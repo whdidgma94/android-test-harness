@@ -145,3 +145,51 @@ ADB 미설치 시 파이프라인 중단. Appium 미설치 시 uiautomator2-only
 | test-runner-agent | pytest 실행, 결과 수집 | Sonnet |
 | report-writer-agent | 최종 리포트 및 README 생성 | Sonnet |
 | gui-launcher-agent | TUI/웹 대시보드 프로세스 관리 | Haiku |
+
+## 트러블슈팅
+
+### `adb devices`에 디바이스가 표시되지 않음
+
+USB 디버깅이 활성화되어 있지 않거나 드라이버 미설치가 원인이다.
+
+```bash
+adb kill-server && adb start-server
+adb devices
+```
+
+에뮬레이터는 Android Studio에서 먼저 실행한 뒤 `adb devices`로 인식을 확인하고 하네스를 실행한다.
+
+### uiautomator2 연결 실패 (`ConnectionError`)
+
+```bash
+python3 -m uiautomator2 init
+```
+
+Wi-Fi ADB 연결인 경우 `adb tcpip 5555 && adb connect {ip}:5555` 후 재시도한다.
+
+### BFS 탐색이 max_screens / max_minutes 상한에 걸려 PARTIAL로 종료됨
+
+`crawl-spec.json`의 `max_screens`·`max_minutes` 값을 늘린 뒤 `/crawl`을 재실행한다.
+
+```bash
+# crawl-spec.json 수정 후 탐색만 재실행
+/crawl
+```
+
+### pytest 실행 실패 (`Appium server not found`)
+
+Appium 서버가 실행 중이 아닌 경우다.
+
+```bash
+appium &      # 백그라운드 실행
+/execute      # 테스트 재실행
+```
+
+### GUI 서버 포트 8000 충돌 (`Address already in use`)
+
+`gui/gui.log`에서 오류를 확인한다. 기존 프로세스를 종료하거나 `/gui-up stop` 후 재실행한다.
+
+```bash
+kill $(cat .android-test-artifacts/{session-id}/gui/gui.pid)
+/gui-up web
+```
